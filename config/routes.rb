@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
-  resource :session
-  resources :passwords, param: :token
-
+  
   root to: "public/homes#top"
+
+  # 会員側
+  scope module: :public do
+    get  "/users/sign_up", to: "public/registrations#new", as: :user_signup
+    post "/users",         to: "public/registrations#create"
+
+    get    "/users/sign_in",  to: "sessions#new",     as: :new_session
+    post   "/users/sign_in",  to: "sessions#create",  as: :session
+    delete "/users/sign_out", to: "sessions#destroy", as: :destroy_session
+
+    resources :passwords, param: :token
+  end
+
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
