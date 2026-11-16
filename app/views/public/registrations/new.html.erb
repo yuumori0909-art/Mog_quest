@@ -1,8 +1,8 @@
 <% #新規会員登録フォーム %>
 <div class="container">
   <div class="row mt-5">
-    <div class="col-10">
-      <h3 class="bg-light my-5 offset-1 px-4"style="display: inline-block;">新規会員登録</h3>
+    <div class="col-12 col-md-10 col-lg-8 col-lg-6 mx-auto">
+      <h3 class="pop-font pop-font fw-bold my-5 offset-1">『グルメ探索員の仲間入り』</h3>
       <%= form_with model: @user, url: users_path do |f| %>
         <% if @user.errors.any? %>
           <div style="color:red">
@@ -14,36 +14,36 @@
           </div>
         <% end %>
 
-        <div class="row mb-3">
-          <label class="col-sm-3 col-form-label">ユーザー名</label>
+        <div class="row mb-4">
+          <label class="pop-font fw-bold col-sm-3 col-form-label">ユーザー名(20文字以内)</label>
           <div class="col-4">
             <%= f.text_field :username, class: "form-control",style: "border-color: black;", required: true %>
           </div>
         </div>
 
-        <div class="row mb-3">
-          <label class="col-sm-3 col-form-label">メールアドレス</label>
+        <div class="row mb-4">
+          <label class="pop-font fw-bold col-sm-3 col-form-label">メールアドレス</label>
           <div class="col-4">
             <%= f.email_field :email_address, class: "form-control",style: "border-color: black;", required: true %>
           </div>
         </div>    
 
-        <div class="row mb-3">
-          <label class="col-sm-3 col-form-label">パスワード（６文字以上）</label>
+        <div class="row mb-4">
+          <label class="pop-font fw-bold col-sm-3 col-form-label">パスワード（６文字以上）</label>
           <div class="col-4">
             <%= f.password_field :password, class: "form-control",style: "border-color: black;", required: true %>
           </div>
         </div>  
 
-        <div class="row mb-3">
-          <label class="col-sm-3 col-form-label">パスワード（確認用）</label>
+        <div class="row mb-4">
+          <label class="pop-font fw-bold col-sm-3 col-form-label">パスワード（確認用）</label>
           <div class="col-4">
             <%= f.password_field :password_confirmation, class: "form-control",style: "border-color: black;", required: true %>
           </div>
         </div>  
         
-        <div class="row mb-3">
-          <label class="col-sm-3 col-form-label">ユーザー画像</label>
+        <div class="row mb-4">
+          <label class="pop-font fw-bold col-sm-3 col-form-label">ユーザー画像</label>
           <div class="col-4">
             <%= f.file_field :profile_image, id: "profile-image-input", accept:"image/*" %>
           </div>
@@ -56,11 +56,12 @@
         <% end %>
 
         <div class="row mb-3">
-          <div class="col-sm-3 offset-sm-3">
-          <%= f.submit "新規登録", class: "btn btn-success w-100" %>
+          <div class="pop-font fw-bold col-sm-3 offset-sm-3">
+          <%= f.submit "新規登録", class: "btn btn-warning w-100" %>
           </div>
         </div>
-
+        <h5 class="pop-font fw-bold mt-3">ユーザー登録済みの方</h5>
+        <h5 class="pop-font fw-bold mt-2 offset-1"><%= link_to "こちら", new_session_path %>からグルメ探索冒険の続きを始めよう！ </h5>
       <% end %>
     </div>
   </div>
