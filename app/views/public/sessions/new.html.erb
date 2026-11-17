@@ -1,0 +1,48 @@
+<% #ログインフォーム %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <div class="text-center my-5">
+        <%= image_tag "sign_logo.png",class:"sign-logo" %>
+      </div>  
+
+      <div class="signup-frame">
+        <div class="signup-form text-white">
+          <%=form_with url: session_path do |f| %>
+
+            <div class="row mb-4">
+              <label class="pop-font fw-bold col-3 col-form-label">メールアドレス</label>
+              <div class="col-4">
+                <%= f.email_field :email_address, class: "form-control",style: "border-color: black;", required: true %>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="pop-font fw-bold col-3 col-form-label">パスワード</label>
+              <div class="col-4">
+                <%= f.password_field :password, class: "form-control",style: "border-color: black;", required: true %>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="pop-font fw-bold col-4 offset-2">
+                <%= f.submit "ログイン", class: "btn btn-primary w-100" %>
+              </div>
+            </div>
+
+            /*あとでゲストログイン追加する*/
+            <div class="row my-4">
+              <div class="pop-font fw-bold col-4 offset-2">
+                <%= f.submit "ゲストログイン（体験版）", class: "btn btn-secondary w-100" %>
+              </div>
+            </div>
+
+            <h5 class="pop-font fw-bold mt-5">ユーザー新規登録がお済みではない方</h5>
+            <h5 class="pop-font fw-bold mt-3 offset-1"><%= link_to "こちら", user_signup_path %>から新規登録してグルメ探索冒険を始めよう！</h5>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
