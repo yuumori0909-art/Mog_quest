@@ -1,6 +1,23 @@
+/*共通カラー*/
+:root {
+  --mogquest-navy: #102b49;
+  --mogquest-backgroud: #faf6ef;
+}
+
 /*GoogleFonts*/
 .pop-font {
   font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+/*全体背景色*/
+body {
+  background-color: var(--mogquest-backgroud);
+}
+
+/*ヘッダー・サイドバー*/
+.site-header{
+  background-color: var(--mogquest-navy);
+  color: white;
 }
 
 /*新規登録フレーム*/
@@ -13,6 +30,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+
 .signup-form {
   position: absolute;
   top: 25%;
@@ -27,10 +45,4 @@
   height: auto;
 }
 
-
-
-/*全体背景色*/
-body {
-  background-color: #FAF6EF;
-}
 
