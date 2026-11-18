@@ -15,9 +15,30 @@ body {
 }
 
 /*ヘッダー・サイドバー*/
-.site-header{
+.site-header,
+.site-sidebar{
   background-color: var(--mogquest-navy);
   color: white;
+}
+
+/*ヘッダー下線*/
+.site-header{
+  border-bottom: 3px solid #000;
+}
+
+/*サイドバー高さ*/
+.site-sidebar{
+  min-height: calc(100vh - 96px);
+}
+
+/*サイドバー メニュー高さ*/
+.sidebar-menu{
+  transform: translateY(-40px);
+}
+
+/*サイドバー メニュー幅*/
+.sidebar-link{
+  width: 140px;
 }
 
 /*新規登録フレーム*/
