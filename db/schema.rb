@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_11_17_072927) do
+ActiveRecord::Schema[8.0].define(version: 2026_11_19_081627) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,24 @@ ActiveRecord::Schema[8.0].define(version: 2026_11_17_072927) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "genre", null: false
+    t.string "access", null: false
+    t.text "description", null: false
+    t.boolean "shipping_available", null: false
+    t.integer "taste_rating", null: false
+    t.integer "price_rating", null: false
+    t.integer "repeat_rating", null: false
+    t.integer "overall_rating", null: false
+    t.integer "user_id", null: false
+    t.integer "prefecture_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "prefectures", force: :cascade do |t|
@@ -80,6 +98,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_11_17_072927) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "prefectures"
+  add_foreign_key "posts", "users"
   add_foreign_key "prefectures", "regions"
   add_foreign_key "sessions", "users"
 end
