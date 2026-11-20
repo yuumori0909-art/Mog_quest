@@ -4,12 +4,15 @@ Rails.application.routes.draw do
 
   # 会員側
   scope module: :public do
+
     get  "/users/sign_up", to: "registrations#new", as: :user_signup
     post "/users",         to: "registrations#create", as: :users
 
     get    "/users/sign_in",  to: "sessions#new",     as: :new_session
     post   "/users/sign_in",  to: "sessions#create",  as: :session
     delete "/users/sign_out", to: "sessions#destroy", as: :destroy_session
+
+    resources :posts
 
     resources :passwords, param: :token
   end
