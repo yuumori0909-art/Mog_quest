@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture
   has_many_attached :photos
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags
 
   #空チェック
   validates :name, presence: true
