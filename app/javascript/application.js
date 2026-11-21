@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-//新規登録　ユーザー画像切り替え
+/*新規登録　ユーザー画像切り替え*/
 document.addEventListener("change", (event) => {
   if(event.target.id !== "profile-image-input") return;
 
@@ -13,7 +13,7 @@ document.addEventListener("change", (event) => {
   URL.createObjectURL(file);
 });
 
-//画像投稿　表示方法
+/*画像投稿　表示方法*/
 (() => {
   let photos = [];
   let urls = [];
@@ -66,3 +66,33 @@ document.addEventListener("change", (event) => {
     if(event.target.closest("#post-photo-next") && index < photos.length - 1){showPhoto(index + 1); }
   });  
 })();
+
+/*タグ　追加*/
+document.addEventListener("click", (event) => {
+  if (event.target.id !== "button-tag") return;
+
+  const tagName = document.getElementById("new-tag-name").value.trim();
+
+  if(tagName.length === 0) return;
+
+  const alreadyAdded = Array.from(document.querySelectorAll("#hidden-tag input")).some((field) => field.value === tagName);
+
+  if (alreadyAdded){
+    document.getElementById("new-tag-name").value = "";
+    return;
+  }
+
+  const chip = document.createElement("span");
+  chip.textContent = tagName;
+  document.getElementById("add-tag").append(chip);
+
+  //Railsに送る隠し入力欄
+  const hiddenField = document.createElement("input");
+  hiddenField.type = "hidden";
+  hiddenField.name = "post[tag_names][]";
+  hiddenField.value = tagName;
+  document.getElementById("hidden-tag").append(hiddenField);
+
+  document.getElementById("new-tag-name").value = "";
+
+});
