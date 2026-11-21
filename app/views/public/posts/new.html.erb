@@ -25,12 +25,23 @@
                   <%= f.label :prefecture_id, "都道府県" %>
                   <%= f.select :prefecture_id, options_from_collection_for_select( @prefectures, :id, :name, @post_prefecture_id ), { prompt: "都道府県の選択" },{ class: "form-select" } %>
                 </div>
-
                 <div class="col-sm-6">
                   <label class="pop-font fw-bold col-form-label">店名</label>
                   <%= f.text_field :name, class: "form-control",style: "border-color: black;", required: true %>
                 </div>
-              </div>    
+              </div>
+              
+              <div class="row mb-4">
+                <div class="col-sm-6">
+                  <label class="pop-font fw-bold col-form-label">アクセス</label>
+                  <%= f.text_field :access, class: "form-control", style: "border-color: black;", required: true %>
+                </div>
+                <div class="col-sm-6">
+                   <%= f.select :shipping_available, [[ "可能", true ], [ "不可", false ]], { prompt: "お取り寄せ可否を選択" },{ class:"form-select" } %>
+                </div>
+              </div>
+              
+              
 
             
             
