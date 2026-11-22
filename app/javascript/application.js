@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "raty"
 
 /*新規登録　ユーザー画像切り替え*/
 document.addEventListener("change", (event) => {
