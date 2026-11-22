@@ -42,10 +42,11 @@ document.addEventListener("change", (event) => {
   document.addEventListener("change", (event) => {
     if(event.target.id !== "post-image-input") return;
 
-    urls.forEach((url) => URL.revokeObjectURL(url));
-
-    photos = Array.from(event.target.files).filter((file) => file.type.startsWith("image/"));
-    urls = photos.map((file) => URL.createObjectURL(file));
+    const selectedPhotos = Array.from(event.target.files).filter((file) => file.type.startsWith("image/"));
+    selectedPhotos.forEach((file) => {
+       photos.push(file);
+       urls.push(URL.createObjectURL(file));
+    });
 
     if(photos.length === 0) {
       get("post-photo-current").hidden = true;
@@ -55,7 +56,7 @@ document.addEventListener("change", (event) => {
       return;
     }
 
-    showPhoto(0);
+    showPhoto(photos.length - 1);
   });
 
   //ボタンで画像切り替え

@@ -1,10 +1,9 @@
-#投稿フォーム
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 col-lg-8 mx-auto">
 
-      <div class="text-center my-5">#看板作る
-        <%= image_tag "sign_logo.png",class:"post-logo" %>
+      <div class="text-center mt-4">
+        <%= image_tag "post-frame-logo.png",class:"post-frame-logo" %>
       </div>  
 
       <div class="post-frame">
@@ -23,7 +22,7 @@
           <%=form_with model: @post do |f| %>
             <div class="row mb-4">
               <div class="col-sm-6">
-                <%= f.label :prefecture_id, "都道府県" %>
+                <label class="pop-font fw-bold col-form-label">都道府県</label>
                 <%= f.select :prefecture_id, options_from_collection_for_select( @prefectures, :id, :name, @post_prefecture_id ), { prompt: "都道府県の選択" },{ class: "form-select" } %>
               </div>
               <div class="col-sm-6">
@@ -33,7 +32,7 @@
             </div>
             
             <div class="row mb-4">
-              <div class="col-sm-8">
+              <div class="col-sm-6">
                 <label class="pop-font fw-bold col-form-label">アクセス</label>
                 <%= f.text_field :access, class: "form-control", style: "border-color: black;", required: true %>
               </div>
@@ -42,21 +41,22 @@
             <div class="row mb-4">
               <div class="col-sm-6">
                 <label class="pop-font fw-bold col-form-label">ジャンル</label>
-                <%= f.select :genre, options_for_select( "和食", "洋食", "中華", "スイーツ", "ドリンク", "お土産", @post.genre ),{ prompt: "ジャンルを選択"}, { class: "form-select" } %>
+                <%= f.select :genre, options_for_select( ["和食", "洋食", "中華", "スイーツ", "ドリンク", "お土産"], @post.genre ),{ prompt: "ジャンルを選択"}, { class: "form-select" } %>
               </div>  
               <div class="col-sm-6">
+                <label class="pop-font fw-bold col-form-label">お取り寄せ可否</label>
                 <%= f.select :shipping_available, [[ "可能", true ], [ "不可", false ]], { prompt: "お取り寄せ可否を選択" },{ class:"form-select" } %>
               </div>
             </div>
 
             <div class="row mb-4">
-              <div class="col-sm-3">
+              <div class="col-sm-3 mt-1">
                 <label class="pop-font fw-bold col-form-label">タグ</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-6">
                 <div id="add-tag"></div>
                 <%= text_field_tag :new_tag_name, nil, id: "new-tag-name", class: "form-control", placeholder: "タグ名を入力" %>
-                <%= button_tag "追加", type: "button", id: "button-tag", class: "btn btn-outline-secondary" %>
+                <%= button_tag "追加", type: "button", id: "button-tag", class: "btn btn-outline-secondary mt-3" %>
                 <div id="hidden-tag"></div>
               </div>
             </div>    
@@ -84,12 +84,12 @@
             <div class="row mb-4">
               <div class="col-sm-10">
                 <label class="pop-font fw-bold col-form-label">説明文</label>
-                <%= f.text_field :description, class: "form-control", style: "border-color: black;", required: true, maxlength: 500 %>
+                <%= f.text_area :description, class: "form-control", rows: 5, style: "border-color: black;", required: true, maxlength: 500 %>
               </div>
             </div>
 
             <div class="row mb-4">
-              <div class="col-sm-3">
+              <div class="col-sm-3 text-center">
                 <label class="pop-font fw-bold col-form-label">味</label>
               </div>
               <div class="col-sm-9">  
@@ -101,7 +101,7 @@
             </div>
 
             <div class="row mb-4">
-              <div class="col-sm-3">
+              <div class="col-sm-3 text-center">
                 <label class="pop-font fw-bold col-form-label">価格</label>
               </div>
               <div class="col-sm-9">  
@@ -113,7 +113,7 @@
             </div>
 
             <div class="row mb-4">
-              <div class="col-sm-3">
+              <div class="col-sm-3 text-center">
                 <label class="pop-font fw-bold col-form-label">リピート</label>
               </div>
               <div class="col-sm-9">  
@@ -125,13 +125,22 @@
             </div>
 
             <div class="row mb-4">
-              <div class="col-sm-3">
+              <div class="col-sm-3 text-center">
                 <label class="pop-font fw-bold col-form-label">総合</label>
               </div>
-              <div class="col-sm-9">  
+              <div class="col-sm-5">  
                 <div id="overall_rating"
                   data-star-on="<%= asset_path('star-on.png') %>"
                   data-star-off="<%= asset_path('star-off.png') %>">
                 </div>
               </div>
+              <div class="col-sm-2">
+                <%= f.submit "投稿", class: "btn btn-signin w-100" %>
+              </div>  
             </div>
+          <% end %>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>      
