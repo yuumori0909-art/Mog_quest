@@ -1,5 +1,6 @@
 import Raty from "raty-js";
 
+/*投稿フォーム　星評価*/
 //味　星レビュー
 document.addEventListener("turbo:load", () => {
   const elem = document.querySelector("#taste_rating");
@@ -59,3 +60,22 @@ document.addEventListener("turbo:load", () => {
     number: 5
   }).init();
 });
+
+
+/*投稿詳細画面　星評価（編集不可）*/
+document.addEventListener("turbo:load", () => {
+  const ratings = document.querySelectorAll(".post-show-rating");
+
+  ratings.forEach((elem) => {
+    elem.innerHTML = "";
+
+    new Raty(elem, {
+      readOnly: true,
+      score: Number(elem.dataset.score),
+      starOn: elem.dataset.starOn,
+      starOff: elem.dataset.starOff,
+      number: 5
+    }).init();
+  });
+});
+

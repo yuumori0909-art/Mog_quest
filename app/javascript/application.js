@@ -14,6 +14,7 @@ document.addEventListener("change", (event) => {
   URL.createObjectURL(file);
 });
 
+
 /*画像投稿　表示方法*/
 (() => {
   let photos = [];
@@ -69,6 +70,51 @@ document.addEventListener("change", (event) => {
   });  
 })();
 
+
+/*投稿詳細　画像表示*/
+document.addEventListener("turbo:load", () => {
+  //写真取得後、配列にする
+  const photos = Array.from( document.querySelectorAll(".post-show-photo"));
+
+  if (photos.length === 0) return;
+
+  //枚数表示
+  const previousButton = document.getElementById("post-show-photo-previous");
+  const nextButton = document.getElementById("post-show-photo-next");
+  const counter = document.getElementById("post-show-photo-counter");
+
+  let currentIndex = 0;
+
+  //写真表示（ボタン・枚数表示の更新）
+  const showPhoto = (index) => {
+    photos.forEach((photo, photoIndex) => {
+      photo.hidden = photoIndex !== index;
+    });
+
+    currentIndex = index;
+    previousButton.hidden = index === 0;
+    nextButton.hidden = index === photos.length - 1;
+    counter.textContent = `${index + 1} / ${photos.length}`;
+  };
+
+  showPhoto(0);
+
+  //ボタン切り替え
+  previousButton.addEventListener("click",() => {
+    if (currentIndex > 0) {
+      showPhoto(currentIndex - 1);
+    }
+  });  
+
+  nextButton.addEventListener("click",() => {
+    if (currentIndex < photos.length - 1) {
+      showPhoto(currentIndex + 1);
+    }
+  });  
+
+});
+
+
 /*タグ　追加*/
 document.addEventListener("click", (event) => {
   if (event.target.id !== "button-tag") return;
@@ -85,6 +131,7 @@ document.addEventListener("click", (event) => {
   }
 
   const chip = document.createElement("span");
+  chip.classList.add("post-tag");
   chip.textContent = tagName;
   document.getElementById("add-tag").append(chip);
 

@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <div class="text-center mt-4"><% #投稿詳細看板作る %>
+        <%= image_tag "post-frame-logo.png",class:"post-frame-logo" %>
+      </div>  
+
+      <div class="post-show-frame">
+        <div class="post-show-form">
+
+          <div class="card">
+           
+            <div class="post-photo-button d-flex align-items-center">
+              <%=button_tag "‹", type: "button", id: "post-show-photo-previous", hidden: true %>
+
+                <div class="post-show-photo-frame">
+                  <% if @post.photos.attached? %>
+                    <% @post.photos.each_with_index do |photo,index| %>
+                        <%= image_tag photo, class: "card-img-top post-show-photo", hidden: index.positive? %>
+                    <% end %>  
+                  <% end %>
+                </div>  
+
+              <%= button_tag "›", type: "button", id: "post-show-photo-next", hidden: true %>
+            </div>  
+            <div id="post-show-photo-counter"></div>
+
+            <div class="card-body">
+
+              <div class="row mb-4">
+                <div class="col-sm-6">
+                  <%= @post.prefecture.region.name %>
+                </div>
+                <div class="col-sm-6">
+                  <%= @post.prefecture.name %>
+                </div>  
+              </div> 
+
+              <div class="row mb-4">
+                <div class="col-sm-6">
+                  <%= @post.genre %>
+                </div>
+                <div class="col-sm-6">
+                  <%= @post.name %>
+                </div>  
+              </div>
+
+              <div class="row mb-4">
+
+                <div class="col-sm-6">
+                  <div><%= @post.access %></div>
+                  <div><%= @post.shipping_available? ? "可能" : "不可" %></div>
+                  <div>
+                    <% @post.tags.each do |tag| %>
+                      <span class="post-tag"><%= tag.name %></span>
+                    <% end %> 
+                  </div>   
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="row mb-2">
+                    <div class="col-sm-3">
+                      <label class="pop-font fw-bold col-form-label">味</label>
+                    </div>  
+                    <div class="col-sm-9">  
+                      <div id="show_taste_rating"
+                        class="post-show-rating"
+                        data-score="<%= @post.taste_rating%>"
+                        data-star-on="<%= asset_path('star-on.png') %>"
+                        data-star-off="<%= asset_path('star-off.png') %>">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-sm-3">
+                      <label class="pop-font fw-bold col-form-label">価格</label>
+                    </div>  
+                    <div class="col-sm-9">  
+                      <div id="show_price_rating"
+                        class="post-show-rating"
+                        data-score="<%= @post.price_rating%>"
+                        data-star-on="<%= asset_path('star-on.png') %>"
+                        data-star-off="<%= asset_path('star-off.png') %>">
+                      </div>
+                    </div>
+                  </div>    
+
+                  <div class="row mb-2">
+                    <div class="col-sm-3">
+                      <label class="pop-font fw-bold col-form-label">リピート</label>
+                    </div>  
+                    <div class="col-sm-9">  
+                      <div id="show_repeat_rating"
+                        class="post-show-rating"
+                        data-score="<%= @post.repeat_rating%>"
+                        data-star-on="<%= asset_path('star-on.png') %>"
+                        data-star-off="<%= asset_path('star-off.png') %>">
+                      </div>  
+                    </div>
+                  </div> 
+
+                  <div class="row mb-2">
+                    <div class="col-sm-3">
+                      <label class="pop-font fw-bold col-form-label">総合</label>
+                    </div>  
+                    <div class="col-sm-9">  
+                      <div id="show_overall_rating"
+                        class="post-show-rating"
+                        data-score="<%= @post.overall_rating%>"
+                        data-star-on="<%= asset_path('star-on.png') %>"
+                        data-star-off="<%= asset_path('star-off.png') %>">
+                      </div> 
+                    </div>
+                  </div>                   
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-sm-10">
+                  <%= @post.description %>
+                </div>
+              </div> 
+              
+              <div class="row mb-2">
+                <div class="col-sm-10 d-flex align-items-center gap-2">
+                  <% if @post.user.profile_image.attached? %>
+                    <%= image_tag @post.user.profile_image, class: "rounded-circle post-show-user-profile-image" %>
+                  <% end %>
+                  <%= @post.user.username %>
+                </div>
+              </div>    
+            </div>
+          </div>  
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>         

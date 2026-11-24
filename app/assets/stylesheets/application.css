@@ -30,12 +30,10 @@ body {
 .site-sidebar {
   min-height: calc(100vh - 96px);
 }
-
 /*サイドバー メニュー高さ*/
 .sidebar-menu {
   transform: translateY(-40px);
 }
-
 /*サイドバー メニュー幅*/
 .sidebar-link {
   width: 140px;
@@ -73,7 +71,6 @@ body {
   top: 25%;
   width: 100%;
 }
-
 /*ログインボタン*/
 .btn-signin {
   background-color: #182033;
@@ -120,13 +117,11 @@ body {
   width: 100%;
   z-index: 1;
 }
-
 /*画像投稿切り替えボタン*/
 .post-photo-button {
   gap: 1rem;
   margin-top: 1rem;
 }
-
 /*画像投稿表示サイズ*/
 .post-photo-frame {
   width: 200px;
@@ -139,12 +134,31 @@ body {
   height: 100%;
   object-fit: contain;
 }
-
 /*投稿フォーム　ロゴ*/
 .post-frame-logo {
   max-width: 100%;
   width: 400px;
   height: auto;
+}
+
+/*投稿詳細画面　ロゴ*/
+.post-show-user-profile-image{
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  background-color: #faf6ef;
+  border: 1px solid black;
+}
+
+/*タグ　デザイン*/
+.post-tag{
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 2px;
+  color: #102b49;
+  background-color: #F3E5C8;
+  border: 1px solid #B58A3A;
+  border-radius: 999px;
 }
 
 
