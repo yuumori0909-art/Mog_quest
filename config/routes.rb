@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: "public/homes#top"
 
   # 会員側
@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     delete "/users/sign_out", to: "sessions#destroy", as: :destroy_session
 
     resources :posts
+
+    #冒険の地図用
+    get "/map", to: "maps#show", as: :adventure_map
 
     resources :passwords, param: :token
   end

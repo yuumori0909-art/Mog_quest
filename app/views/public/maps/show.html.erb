@@ -1,0 +1,29 @@
+<div class="container-fluid px-4">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="mt-4">
+        <%= image_tag "map-logo.png", class:"adventure-map-logo" %>
+      </div>  
+      
+      <div class="row mt-5">
+        <div class="col-12 col-lg-9">
+          <%= image_tag "map.png", class: "adventure-map" %>
+        </div>
+        
+        <div class="col-12 col-lg-3 adventure-map-area-list">
+          <div class="pop-font fw-fold fs-2 mb-4 ms-4">冒険エリア一覧</div>
+
+          <% @regions.each do |region| %>
+            <div class="adventure-map-region region-<%= region.id %>">
+              <%= image_tag "regions/#{region.id}.png", alt: "", class: "adventure-map-icon" %>
+
+              <%= region.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>          
+
