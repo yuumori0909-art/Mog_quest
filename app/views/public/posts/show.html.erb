@@ -2,16 +2,16 @@
   <div class="row">
     <div class="col-12 col-md-10 col-lg-8 mx-auto">
 
-      <div class="text-center mt-4"><% #投稿詳細看板作る %>
+      <div class="text-center mt-4">
         <%= image_tag "post-frame-logo.png",class:"post-frame-logo" %>
       </div>  
 
       <div class="post-show-frame">
         <div class="post-show-form">
 
-          <div class="card">
+          <div class="card post-show-card mb-5">
            
-            <div class="post-photo-button d-flex align-items-center">
+            <div class="post-show-photo-button d-flex align-items-center mt-4">
               <%=button_tag "‹", type: "button", id: "post-show-photo-previous", hidden: true %>
 
                 <div class="post-show-photo-frame">
@@ -24,46 +24,55 @@
 
               <%= button_tag "›", type: "button", id: "post-show-photo-next", hidden: true %>
             </div>  
-            <div id="post-show-photo-counter"></div>
+            <div id="post-show-photo-counter" class="pop-font fw-bold d-flex justify-content-center mt-2 fs-5"></div>
 
             <div class="card-body">
-
-              <div class="row mb-4">
+              
+              <div class="row mb-4 text-center">
                 <div class="col-sm-6">
-                  <%= @post.prefecture.region.name %>
+                  <div class="post-label">エリア</div>
+                  <div class="pop-font fs-4"><%= @post.prefecture.region.name %></div>
                 </div>
                 <div class="col-sm-6">
-                  <%= @post.prefecture.name %>
+                  <div class="post-label">都道府県</div>
+                  <div class="pop-font fs-4"><%= @post.prefecture.name %></div>
                 </div>  
               </div> 
 
-              <div class="row mb-4">
+              <div class="row mb-4 text-center">
                 <div class="col-sm-6">
-                  <%= @post.genre %>
+                  <div class="post-label">ジャンル</div>
+                  <div class="pop-font fs-4"><%= @post.genre %></div>
                 </div>
                 <div class="col-sm-6">
-                  <%= @post.name %>
+                  <div class="post-label">店名</div>
+                  <div class="pop-font fs-4"><%= @post.name %></div>
                 </div>  
               </div>
 
-              <div class="row mb-4">
+              <div class="row mb-4 text-center">
 
                 <div class="col-sm-6">
-                  <div><%= @post.access %></div>
-                  <div><%= @post.shipping_available? ? "可能" : "不可" %></div>
+                  <div class="post-label">アクセス</div>
+                  <div class="pop-font fs-4"><%= @post.access %></div>
+
+                  <div class="post-label mt-3">お取り寄せ可否</div>
+                  <div class="pop-font fs-4"><%= @post.shipping_available? ? "可能" : "不可" %></div>
                   <div>
+
                     <% @post.tags.each do |tag| %>
-                      <span class="post-tag"><%= tag.name %></span>
+                      <div class="post-label">タグ</div>
+                      <span class="post-tag mt-3"><%= tag.name %></span>
                     <% end %> 
                   </div>   
                 </div>
 
                 <div class="col-sm-6">
-                  <div class="row mb-2">
-                    <div class="col-sm-3">
-                      <label class="pop-font fw-bold col-form-label">味</label>
+                  <div class="row mt-5 align-items-center">
+                    <div class="col-sm-4">
+                      <label class="pop-font fw-bold col-form-label fs-5">味</label>
                     </div>  
-                    <div class="col-sm-9">  
+                    <div class="col-sm-8">  
                       <div id="show_taste_rating"
                         class="post-show-rating"
                         data-score="<%= @post.taste_rating%>"
@@ -73,11 +82,11 @@
                     </div>
                   </div>
 
-                  <div class="row mb-2">
-                    <div class="col-sm-3">
-                      <label class="pop-font fw-bold col-form-label">価格</label>
+                  <div class="row mb-2 align-items-center">
+                    <div class="col-sm-4">
+                      <label class="pop-font fw-bold col-form-label fs-5">価格</label>
                     </div>  
-                    <div class="col-sm-9">  
+                    <div class="col-sm-8">  
                       <div id="show_price_rating"
                         class="post-show-rating"
                         data-score="<%= @post.price_rating%>"
@@ -87,11 +96,11 @@
                     </div>
                   </div>    
 
-                  <div class="row mb-2">
-                    <div class="col-sm-3">
-                      <label class="pop-font fw-bold col-form-label">リピート</label>
+                  <div class="row mb-2 align-items-center">
+                    <div class="col-sm-4">
+                      <label class="pop-font fw-bold col-form-label fs-5">リピート</label>
                     </div>  
-                    <div class="col-sm-9">  
+                    <div class="col-sm-8">  
                       <div id="show_repeat_rating"
                         class="post-show-rating"
                         data-score="<%= @post.repeat_rating%>"
@@ -102,10 +111,10 @@
                   </div> 
 
                   <div class="row mb-2">
-                    <div class="col-sm-3">
-                      <label class="pop-font fw-bold col-form-label">総合</label>
+                    <div class="col-sm-4 align-items-center">
+                      <label class="pop-font fw-bold col-form-label fs-5">総合</label>
                     </div>  
-                    <div class="col-sm-9">  
+                    <div class="col-sm-8">  
                       <div id="show_overall_rating"
                         class="post-show-rating"
                         data-score="<%= @post.overall_rating%>"
@@ -118,17 +127,20 @@
               </div>
 
               <div class="row mb-4">
-                <div class="col-sm-10">
-                  <%= @post.description %>
+                <div class="col-sm-10 post-show-description mx-auto">
+                  <div class="post-label">冒険メモ</div>
+                  <div class="pop-font fw-bold"><%= @post.description %></div>
                 </div>
               </div> 
               
               <div class="row mb-2">
-                <div class="col-sm-10 d-flex align-items-center gap-2">
+                <div class="col-sm-10 d-flex align-items-center gap-2 post-show-author mx-auto">
                   <% if @post.user.profile_image.attached? %>
                     <%= image_tag @post.user.profile_image, class: "rounded-circle post-show-user-profile-image" %>
+                  <% else %>
+                    <%= image_tag "default_profile.jpg", class: "rounded-circle post-show-user-profile-image" %>  
                   <% end %>
-                  <%= @post.user.username %>
+                  <div class="pop-font fs-4"><%= @post.user.username %></div>
                 </div>
               </div>    
             </div>
